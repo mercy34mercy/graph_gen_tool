@@ -6,21 +6,34 @@ from fastdtw import fastdtw
 
 sample_rate = 10e6
 
+# ['data2_1950_11-14_17-16-30.npy','data3_1950_11-14_17-16-30.npy','1950.5MHz〜1952MHz','near_serial_3'],
+# ['data2_1950_11-14_17-19-30.npy','data3_1950_11-14_17-19-30.npy','1950.5MHz〜1952MHz','near_serial_4'],
+# ['data2_1950_11-14_17-22-30.npy','data3_1950_11-14_17-22-30.npy','1950.5MHz〜1952MHz','near_serial_5'],
+# ['data2_1950_11-14_17-25-30.npy','data3_1950_11-14_17-25-30.npy','1950.5MHz〜1952MHz','near_serial_6'],
+
 # プロットするデータセット
 plot_file_path = [
-            ['data2_1720_11-14_17-42-30.npy','data3_1720_11-14_17-42-30.npy','1720.5MHz〜1722MHz','near_serial_1'],
-            ['data2_1720_11-14_17-25-30.npy','data3_1720_11-14_17-25-30.npy','1720.5MHz〜1722MHz','near_serial_2'],
-            # ['data2_1775_11-14_17-39-30.npy','data3_1775_11-14_17-39-30.npy','1775.5MHz〜1777MHz','near_serial_3'],
-            # ['data2_1775_11-14_17-45-30.npy','data3_1775_11-14_17-45-30.npy','1775.5MHz〜1777MHz','near_serial_4'],
-            ['data2_1950_11-14_17-22-30.npy','data3_1950_11-14_17-22-30.npy','1950.5MHz〜1952MHz','near_discon_1'],
-            ['data2_1950_11-14_17-39-30.npy','data3_1950_11-14_17-39-30.npy','1950.5MHz〜1952MHz','near_discon_2'],
+            ['data2_1720_11-14_17-42-30.npy','data3_1720_11-14_17-42-30.npy','1720.5MHz〜1722MHz','near_serial_11'],
+            ['data2_1720_11-14_17-25-30.npy','data3_1720_11-14_17-25-30.npy','1720.5MHz〜1722MHz','near_serial_12'],
+            # ['data2_1775_11-14_17-16-30.npy','data3_1720_11-14_17-16-30.npy','1720.5MHz〜1722MHz','near_serial_3'],
+            # ['data2_1775_11-14_17-19-30.npy','data3_1720_11-14_17-19-30.npy','1720.5MHz〜1722MHz','near_serial_4'],
+            # ['data2_1775_11-14_17-22-30.npy','data3_1720_11-14_17-22-30.npy','1720.5MHz〜1722MHz','near_serial_5'],
+            # ['data2_1775_11-14_17-28-30.npy','data3_1720_11-14_17-28-30.npy','1720.5MHz〜1722MHz','near_serial_6'],
+            # ['data2_1775_11-14_17-39-30.npy','data3_1775_11-14_17-39-30.npy','1775.5MHz〜1777MHz','near_serial_7'],
+            # ['data2_1775_11-14_17-45-30.npy','data3_1775_11-14_17-45-30.npy','1775.5MHz〜1777MHz','near_serial_8'],
+            # ['data2_1950_11-14_17-22-30.npy','data3_1950_11-14_17-22-30.npy','1950.5MHz〜1952MHz','near_discon_9'],
+            # ['data2_1950_11-14_17-39-30.npy','data3_1950_11-14_17-39-30.npy','1950.5MHz〜1952MHz','near_discon_10'],
         ]
 
 plot_far_file_path = [
             ['data2_1720_11-14_17-42-30.npy','data3_1720_11-14_17-28-30.npy','1720.5MHz〜1722MHz','far_serial_1'],
             ['data2_1720_11-14_17-25-30.npy','data3_1720_11-14_17-19-30.npy','1720.5MHz〜1722MHz','far_serial_2'],
-            ['data2_1950_11-14_17-22-30.npy','data3_1950_11-14_17-16-30.npy','1950.5MHz〜1952MHz','far_discon_1'],
-            ['data2_1950_11-14_17-39-30.npy','data3_1950_11-14_17-19-30.npy','1950.5MHz〜1952MHz','far_discon_2'],
+            # ['data2_1950_11-14_17-22-30.npy','data3_1950_11-14_17-16-30.npy','1950.5MHz〜1952MHz','far_discon_1'],
+            # ['data2_1950_11-14_17-39-30.npy','data3_1950_11-14_17-19-30.npy','1950.5MHz〜1952MHz','far_discon_2'],
+            # ['data2_1950_11-14_17-25-30.npy','data3_1950_11-14_17-16-30.npy','1950.5MHz〜1952MHz','far_serial_3'],
+            # ['data2_1950_11-14_17-19-30.npy','data3_1950_11-14_17-16-30.npy','1950.5MHz〜1952MHz','far_serial_4'], 
+            # ['data2_1950_11-14_17-25-30.npy','data3_1720_11-14_17-42-30.npy','1950.5MHz〜1952MHz','far_serial_6'],
+            # ['data2_1950_11-14_17-42-30.npy','data3_1720_11-14_17-25-30.npy','1950.5MHz〜1952MHz','far_serial_7'],
         ]   
 
 def dtw_distance(data1, data2):
@@ -223,7 +236,7 @@ def convert_to_fft_data_lower(path:str):
 directory_path = '/Volumes/volume/1114/'
 
 
-for file_name_1,file_name_2,frequency_width,filename in plot_far_file_path:
+for file_name_1,file_name_2,frequency_width,filename in plot_file_path:
 
     data1_1,data1_2 = convert_to_fft_data_upper(directory_path + file_name_1)
     plot_data_1,_ = normalize(data1_1,data1_2)
@@ -237,11 +250,11 @@ for file_name_1,file_name_2,frequency_width,filename in plot_far_file_path:
     corr = round(corr[0], 3)
     dtw = round(dtw, 3)
 
-    plt.figure()
+    plt.figure(figsize=(22, 10))
 
     # data1_1とdata2_1をプロット
-    plt.plot(plot_data_1, lw=1 ,label='機器1')
-    plt.plot(plot_data_2, lw=1 ,label='機器2')
+    plt.plot(plot_data_1, lw=3 ,label='機器1')
+    plt.plot(plot_data_2, lw=3 ,label='機器2')
 
     for i in plot_data_1:
         if i < 0:
@@ -252,17 +265,19 @@ for file_name_1,file_name_2,frequency_width,filename in plot_far_file_path:
     # タイトルと凡例を追加
     # plt.title(f"時間ごとの電波強度の変化({frequency_width}) \n 相関係数:{corr}, DTW距離:{dtw}")
     plt.text(x=max(plt.xlim())*0.05, y=max(plt.ylim())*0.85, s=f"相関係数: {corr}", 
-            fontsize=12, fontweight='bold', color='black', 
+            fontsize=45, fontweight='bold', color='black', 
             bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
-    plt.legend(fontsize=12)
+    plt.legend(fontsize=45)
+    plt.subplots_adjust(left=0.1, right=0.9, top=0.9, bottom=0.2)
 
     # x軸とy軸のラベルを追加
-    plt.xlabel("時間(秒)",fontsize=18,fontweight='bold')
-    plt.ylabel("電波強度",fontsize=18,fontweight='bold')
+    plt.xlabel("時間(秒)",fontsize=50,fontweight='bold')
+    plt.ylabel("電波強度",fontsize=50,fontweight='bold')
 
     x_ticks = np.linspace(0, len(data1_1), 6)  # 0からデータの長さまで6個の点を生成
     x_labels = [0, 6, 12, 18, 24, 30]  # 目盛りのラベル
-    plt.xticks(x_ticks, x_labels)
+    plt.xticks(x_ticks, x_labels, fontsize=40)
+    plt.yticks(fontsize=40)
 
     # x軸とy軸の範囲を設定 (必要に応じて調整してください)
     plt.xlim([0, len(data1_1)])  # 例えば、データポイント数に合わせて調整

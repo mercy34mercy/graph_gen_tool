@@ -1,0 +1,6 @@
+デバイス,Witness生成(秒),Proof生成(秒),合計(秒)
+Jetson Orin Nano(7W),3.485,0.003,3.488
+Jetson Orin Nano(15W),2.301,0.005,2.306
+RaspberryPi4,4.988,0.813,5.801
+MacBook Pro,0.521,2.858,3.379
+WSL,1.189,0.296,1.485

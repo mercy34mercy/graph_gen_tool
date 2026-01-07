@@ -38,6 +38,6 @@ for filename in filenames:
     plt.xlabel('相関係数')
     plt.ylabel('データ数')
 
-    plt.text(0.5, max(hist), f'総データ数: {total_data_count}', ha='center', va='bottom')
+    plt.text(0.5, 5, f'総データ数: {total_data_count}', ha='center', va='bottom')
     # プロットの保存
-    plt.savefig("./fig/corr_" + filename + '.pdf')
+    plt.savefig("./fig/ja/corr_" + filename + '.pdf')
